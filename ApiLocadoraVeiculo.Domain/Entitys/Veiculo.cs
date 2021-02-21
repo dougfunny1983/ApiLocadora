@@ -1,4 +1,6 @@
-﻿namespace ApiLocadoraVeiculo.Domain.Entitys
+﻿using System;
+
+namespace ApiLocadoraVeiculo.Domain.Entitys
 {
     public class Veiculo : Base
     {
@@ -6,6 +8,7 @@
         public string Marca { get; set; }
         public string Modelo { get; set; }
         public bool IsDisponivel { get; set; }
+        public DateTime DataCadastro { get; set; }
 
     }
 }
