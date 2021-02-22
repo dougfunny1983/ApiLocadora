@@ -1,9 +1,7 @@
 ﻿using ApiLocadoraVeiculo.Domain.Entitys;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ApiLocadoraVeiculo.Infrastructure.Data
 {
@@ -20,6 +18,7 @@ namespace ApiLocadoraVeiculo.Infrastructure.Data
         public override int SaveChanges()
         {
             var entryListChange = ChangeTracker.Entries().Where(entry => entry.Entity.GetType().GetProperty("DataCadastro") != null);
+
             foreach (var entry in entryListChange)
             {
                 if (entry.State == EntityState.Added)
