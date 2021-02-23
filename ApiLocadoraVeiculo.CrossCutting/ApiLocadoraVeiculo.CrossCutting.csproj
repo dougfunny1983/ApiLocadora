@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="IOC\" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\ApiLocadoraVeiculo.Application\ApiLocadoraVeiculo.Application.csproj" />
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain.Services\ApiLocadoraVeiculo.Domain.Services.csproj" />
     <ProjectReference Include="..\ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj" />
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Infrastructure\ApiLocadoraVeiculo.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
