@@ -5,11 +5,11 @@ namespace ApiLocadoraVeiculo.Application.Interfaces
 {
     public interface IApplicationServiceVeiculo
     {
-        void Add(VeiculoDto veiculo);
+        void Add(VeiculoDto veiculoDto);
 
-        void Update(VeiculoDto veiculo);
+        void Update(VeiculoDto veiculoDto);
 
-        void Remove(VeiculoDto veiculo);
+        void Remove(VeiculoDto veiculoDto);
 
         IEnumerable<VeiculoDto> GetAll();
 
