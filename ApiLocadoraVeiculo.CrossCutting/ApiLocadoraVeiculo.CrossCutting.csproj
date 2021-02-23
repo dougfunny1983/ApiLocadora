@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="IOC\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Application\ApiLocadoraVeiculo.Application.csproj" />
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

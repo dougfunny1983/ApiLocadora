@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain.Core\ApiLocadoraVeiculo.Domain.Core.csproj" />
+  </ItemGroup>
+
 </Project>
