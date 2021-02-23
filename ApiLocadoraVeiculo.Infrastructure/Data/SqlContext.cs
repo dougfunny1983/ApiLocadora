@@ -7,9 +7,13 @@ namespace ApiLocadoraVeiculo.Infrastructure.Data
 {
     public class SqlContext : DbContext
     {
-        public SqlContext() { }
+        public SqlContext()
+        {
+        }
 
-        public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
+        public SqlContext(DbContextOptions<SqlContext> options) : base(options)
+        {
+        }
 
         public DbSet<Cliente> Clientes { get; set; }
 
@@ -30,12 +34,9 @@ namespace ApiLocadoraVeiculo.Infrastructure.Data
                 {
                     entry.Property("DataCadastro").IsModified = false;
                 }
-
-
             }
 
             return base.SaveChanges();
         }
-
     }
 }

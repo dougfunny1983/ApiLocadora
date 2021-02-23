@@ -9,6 +9,5 @@ namespace ApiLocadoraVeiculo.Domain.Entitys
         public string Modelo { get; set; }
         public bool IsDisponivel { get; set; }
         public DateTime DataCadastro { get; set; }
-
     }
 }
