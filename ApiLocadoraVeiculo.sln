@@ -11,17 +11,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{5E44BA19-1076-4CAF-B2EC-B5B57FFA0DE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.API", "ApiLocadoraVeiculo.API\ApiLocadoraVeiculo.API.csproj", "{3699D4D9-F4DD-4F3B-A395-4D325B0552C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.API", "ApiLocadoraVeiculo.API\ApiLocadoraVeiculo.API.csproj", "{3699D4D9-F4DD-4F3B-A395-4D325B0552C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.Application", "ApiLocadoraVeiculo.Application\ApiLocadoraVeiculo.Application.csproj", "{B1F9D7F0-B138-47B5-B1BB-17A1186AC727}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Application", "ApiLocadoraVeiculo.Application\ApiLocadoraVeiculo.Application.csproj", "{B1F9D7F0-B138-47B5-B1BB-17A1186AC727}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.Domain", "ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj", "{61C8875C-0059-474A-8552-238025B49BEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Domain", "ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj", "{61C8875C-0059-474A-8552-238025B49BEF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.Infrastructure", "ApiLocadoraVeiculo.Infrastructure\ApiLocadoraVeiculo.Infrastructure.csproj", "{A03A4DF0-F35B-48D8-A04E-AFD2CC642209}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Infrastructure", "ApiLocadoraVeiculo.Infrastructure\ApiLocadoraVeiculo.Infrastructure.csproj", "{A03A4DF0-F35B-48D8-A04E-AFD2CC642209}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.Domain.Core", "ApiLocadoraVeiculo.Domain.Core\ApiLocadoraVeiculo.Domain.Core.csproj", "{AD8F7A5B-5519-4FE0-B092-4513CF56CDAA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Domain.Core", "ApiLocadoraVeiculo.Domain.Core\ApiLocadoraVeiculo.Domain.Core.csproj", "{AD8F7A5B-5519-4FE0-B092-4513CF56CDAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.Domain.Services", "ApiLocadoraVeiculo.Domain.Services\ApiLocadoraVeiculo.Domain.Services.csproj", "{C0C750D4-3680-4EF6-B30A-CECAECBDA489}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Domain.Services", "ApiLocadoraVeiculo.Domain.Services\ApiLocadoraVeiculo.Domain.Services.csproj", "{C0C750D4-3680-4EF6-B30A-CECAECBDA489}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCutting", "5 - CrossCutting", "{E0355668-37D2-4CEE-9F09-844AB2A7F318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.CrossCutting", "ApiLocadoraVeiculo.CrossCutting\ApiLocadoraVeiculo.CrossCutting.csproj", "{5DB49734-ECDE-41D5-AAF0-DE817F99599C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,10 @@ Global
 		{C0C750D4-3680-4EF6-B30A-CECAECBDA489}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0C750D4-3680-4EF6-B30A-CECAECBDA489}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0C750D4-3680-4EF6-B30A-CECAECBDA489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DB49734-ECDE-41D5-AAF0-DE817F99599C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DB49734-ECDE-41D5-AAF0-DE817F99599C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DB49734-ECDE-41D5-AAF0-DE817F99599C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DB49734-ECDE-41D5-AAF0-DE817F99599C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +72,7 @@ Global
 		{A03A4DF0-F35B-48D8-A04E-AFD2CC642209} = {5E44BA19-1076-4CAF-B2EC-B5B57FFA0DE0}
 		{AD8F7A5B-5519-4FE0-B092-4513CF56CDAA} = {61B7DB73-2393-4C35-808A-FDC0E308303C}
 		{C0C750D4-3680-4EF6-B30A-CECAECBDA489} = {61B7DB73-2393-4C35-808A-FDC0E308303C}
+		{5DB49734-ECDE-41D5-AAF0-DE817F99599C} = {E0355668-37D2-4CEE-9F09-844AB2A7F318}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {051E215B-2AA7-4A1D-AAE1-4A7D4D26C2E3}
