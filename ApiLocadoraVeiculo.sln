@@ -25,7 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.Domain.S
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCutting", "5 - CrossCutting", "{E0355668-37D2-4CEE-9F09-844AB2A7F318}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiLocadoraVeiculo.CrossCutting", "ApiLocadoraVeiculo.CrossCutting\ApiLocadoraVeiculo.CrossCutting.csproj", "{5DB49734-ECDE-41D5-AAF0-DE817F99599C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.CrossCutting", "ApiLocadoraVeiculo.CrossCutting\ApiLocadoraVeiculo.CrossCutting.csproj", "{5DB49734-ECDE-41D5-AAF0-DE817F99599C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Config", "6 - Config", "{9A96C053-3869-49C7-ADA2-0D9AFB0AA5E2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
