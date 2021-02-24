@@ -6,9 +6,9 @@ namespace ApiLocadoraVeiculo.CrossCutting.IOC
     {
         protected override void Load(ContainerBuilder builder)
         {
+            #region Carrega IOC
             ConfigurationIOC.Load(builder);
+            #endregion
         }
     }
 }
-
-// manipulação de dados; performace do banco de dados; estudar sobre task (async, await);

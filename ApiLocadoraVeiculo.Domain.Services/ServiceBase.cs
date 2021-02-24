@@ -1,8 +1,6 @@
 ﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Repositorys;
 using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ApiLocadoraVeiculo.Domain.Services
 {
