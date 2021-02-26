@@ -1,6 +1,7 @@
 ﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Repositorys;
 using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Domain.Services
 {
@@ -8,27 +9,17 @@ namespace ApiLocadoraVeiculo.Domain.Services
     {
         private readonly IRepositoryBase<TEntity> repository;
 
-        public ServiceBase(IRepositoryBase<TEntity> repository)
-        {
-            this.repository = repository;
-        }
-        public void Add(TEntity obj)
-        {
-            repository.Add(obj);
-        }
+        public ServiceBase(IRepositoryBase<TEntity> repository) => this.repository = repository;
 
-        public IEnumerable<TEntity> GetAll() => repository.GetAll();
 
-        public TEntity GetById(int id) => repository.GetById(id);
+        public Task Create(TEntity obj) => repository.Create(obj);
+        
+        public void Delete(string id) => repository.Delete(id);      
 
-        public void Remove(TEntity obj)
-        {
-            repository.Remove(obj);
-        }
+        public Task<TEntity> Get(string id) => repository.Get(id);
 
-        public void Update(TEntity obj)
-        {
-            repository.Update(obj);
-        }
+        public Task<IEnumerable<TEntity>> Get() => repository.Get();
+
+        public void Update(TEntity obj) => repository.Update(obj);
     }
 }

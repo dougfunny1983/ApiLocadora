@@ -1,61 +1,56 @@
 ﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Repositorys;
-using Microsoft.EntityFrameworkCore;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Infrastructure.Data.Repositorys
 {
-    public class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
+    public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly SqlContext sqlContext;
+        protected readonly IMongoDbContext _mongoContext;
+        protected IMongoCollection<TEntity> _dbCollection;
 
-        public RepositoryBase(SqlContext sqlContext)
+        protected RepositoryBase(IMongoDbContext context)
         {
-            this.sqlContext = sqlContext;
+            _mongoContext = context;
+            _dbCollection = _mongoContext.GetCollection<TEntity>(typeof(TEntity).Name);
         }
 
-        public void Add(TEntity obj)
+        public async Task Create(TEntity obj)
         {
-            try
+            if (obj == null)
             {
-                sqlContext.Set<TEntity>().Add(obj);
-                sqlContext.SaveChanges();
+                throw new ArgumentNullException(typeof(TEntity).Name + " object is null");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            await _dbCollection.InsertOneAsync(obj);
         }
 
-        public IEnumerable<TEntity> GetAll() => sqlContext.Set<TEntity>().ToList();
-
-        public TEntity GetById(int id) => sqlContext.Set<TEntity>().Find(id);
-
-        public void Remove(TEntity obj)
+        public async Task<TEntity> Get(string id)
         {
-            try
-            {
-                sqlContext.Set<TEntity>().Remove(obj);
-                sqlContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var objectId = new ObjectId(id);
+
+            FilterDefinition<TEntity> filter = Builders<TEntity>.Filter.Eq("_id", objectId);
+
+            return await _dbCollection.FindAsync(filter).Result.FirstOrDefaultAsync();
         }
 
-        public void Update(TEntity obj)
+        public async Task<IEnumerable<TEntity>> Get()
         {
-            try
-            {
-                sqlContext.Entry(obj).State = EntityState.Modified;
-                sqlContext.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var all = await _dbCollection.FindAsync(Builders<TEntity>.Filter.Empty);
+            return await all.ToListAsync();
+        }
+
+        public void Delete(string id)
+        {
+            var objectId = new ObjectId(id);
+            _dbCollection.DeleteOneAsync(Builders<TEntity>.Filter.Eq("_id", objectId));
+        }
+
+        public virtual void Update(TEntity obj)
+        {
+            _dbCollection.ReplaceOneAsync(Builders<TEntity>.Filter.Eq("_id", obj.GetId()), obj);
         }
     }
 }

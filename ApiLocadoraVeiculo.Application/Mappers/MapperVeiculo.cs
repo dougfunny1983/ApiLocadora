@@ -14,7 +14,8 @@ namespace ApiLocadoraVeiculo.Application.Mappers
              Id = veiculoDto.Id,
              Nome = veiculoDto.Nome,
              Marca = veiculoDto.Marca,
-             Modelo = veiculoDto.Modelo
+             Modelo = veiculoDto.Modelo,
+             Imagem = veiculoDto.Imagem
          };
 
         public VeiculoDto MapperEntityToDto(Veiculo veiculo) =>
@@ -23,7 +24,8 @@ namespace ApiLocadoraVeiculo.Application.Mappers
              Id = veiculo.Id,
              Nome = veiculo.Nome,
              Marca = veiculo.Marca,
-             Modelo = veiculo.Modelo
+             Modelo = veiculo.Modelo,
+             Imagem = veiculo.Imagem
          };
 
         public IEnumerable<VeiculoDto> MapperListVeiculosDto(IEnumerable<Veiculo> veiculos) =>
@@ -33,7 +35,8 @@ namespace ApiLocadoraVeiculo.Application.Mappers
                 Id = veiculo.Id,
                 Nome = veiculo.Nome,
                 Marca = veiculo.Marca,
-                Modelo = veiculo.Modelo
+                Modelo = veiculo.Modelo,
+                Imagem = veiculo.Imagem
             });
     }
 }

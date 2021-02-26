@@ -1,8 +1,9 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
-using ApiLocadoraVeiculo.Application.Interfaces;
+using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using ApiLocadoraVeiculo.Application.Interfaces.Mappers;
 using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Application
 {
@@ -18,28 +19,29 @@ namespace ApiLocadoraVeiculo.Application
             this.mapperCliente = mapperCliente;
         }
 
-        public void Add(ClienteDto clienteDto)
+        public async Task Create(ClienteDto clienteDto)
         {
             var cliente = mapperCliente.MapperDtoToEntity(clienteDto);
-            serviceCliente.Add(cliente);
+            await serviceCliente.Create(cliente);
         }
 
-        public IEnumerable<ClienteDto> GetAll()
+        public Task <IEnumerable<ClienteDto>> Get()
         {
-            var clientes = serviceCliente.GetAll();
-            return mapperCliente.MapperListClientesDto(clientes);
+            var clientes = serviceCliente.Get();
+            return Task.FromResult(mapperCliente.MapperListClientesDto(clientes));
         }
 
-        public ClienteDto GetById(int id)
+        public Task <ClienteDto> Get(string id)
         {
-            var cliente = serviceCliente.GetById(id);
-            return mapperCliente.MapperEntityToDto(cliente);
+            var cliente = serviceCliente.Get(id);
+            return Task.FromResult(mapperCliente.MapperEntityToDto(cliente));
         }
 
-        public void Remove(ClienteDto clienteDto)
+        public async Task Delete(string id)
         {
+            var clienteDto = await Get(id);
             var cliente = mapperCliente.MapperDtoToEntity(clienteDto);
-            serviceCliente.Remove(cliente);
+            serviceCliente.Delete(cliente);
         }
 
         public void Update(ClienteDto clienteDto)
@@ -47,5 +49,6 @@ namespace ApiLocadoraVeiculo.Application
             var cliente = mapperCliente.MapperDtoToEntity(clienteDto);
             serviceCliente.Update(cliente);
         }
+
     }
 }

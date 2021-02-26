@@ -3,6 +3,7 @@ using ApiLocadoraVeiculo.Domain.Entitys;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Application.Interfaces.Mappers
 {
@@ -10,8 +11,8 @@ namespace ApiLocadoraVeiculo.Application.Interfaces.Mappers
     {
         Cliente MapperDtoToEntity(ClienteDto cliente);
 
-        IEnumerable<ClienteDto> MapperListClientesDto(IEnumerable<Cliente> clientes);
+        IEnumerable<ClienteDto> MapperListClientesDto(Task<IEnumerable<Cliente>> clientes);
 
-        ClienteDto MapperEntityToDto(Cliente cliente);
+        ClienteDto MapperEntityToDto(Task<Cliente> cliente);
     }
 }

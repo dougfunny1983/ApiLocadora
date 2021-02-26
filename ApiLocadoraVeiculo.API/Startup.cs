@@ -24,8 +24,15 @@ namespace ApiLocadoraVeiculo.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // requires using Microsoft.Extensions.Options
+            //services.Configure<LocadoraDatabaseSettings>(
+            //    Configuration.GetSection(nameof(LocadoraDatabaseSettings)));
+
+            //services.AddSingleton<ILocadoraDatabaseSettings>(sp =>
+            //    sp.GetRequiredService<IOptions<LocadoraDatabaseSettings>>().Value);
+
             var connection = Configuration["SqlConnection:SqlConnectionString"];
-            services.AddDbContext<SqlContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<MongoDbContext>(options => options.UseSqlServer(connection));
 
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);

@@ -1,17 +1,18 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Domain.Core.Interfaces.Services
 {
     public interface IServiceBase<TEntity> where TEntity : class
     {
-        void Add(TEntity obj);
+        Task Create(TEntity obj);
 
         void Update(TEntity obj);
 
-        void Remove(TEntity obj);
+        void Delete(TEntity obj);
 
-        IEnumerable<TEntity> GetAll();
+        Task<TEntity> Get(string id);
 
-        TEntity GetById(int id);
+        Task<IEnumerable<TEntity>> Get();
     }
 }

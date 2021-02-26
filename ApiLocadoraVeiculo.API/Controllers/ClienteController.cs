@@ -1,10 +1,9 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
 using ApiLocadoraVeiculo.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
+using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.API.Controllers
@@ -15,28 +14,30 @@ namespace ApiLocadoraVeiculo.API.Controllers
     {
         private readonly IApplicationServiceCliente applicationServiceCliente;
 
-        public ClienteController(IApplicationServiceCliente applicationServiceCliente) =>        
+        public ClienteController(IApplicationServiceCliente applicationServiceCliente) =>
             this.applicationServiceCliente = applicationServiceCliente;
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get() => Ok(applicationServiceCliente.GetAll());
+        public async Task<ActionResult<IEnumerable<string>>> Get() =>
+            Ok(await applicationServiceCliente.Get());
+        
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id) => Ok(applicationServiceCliente.GetById(id));
+        public ActionResult<string> Get(string id) => 
+            Ok(applicationServiceCliente.Get(id));
 
         [HttpPost]
-        public ActionResult Post([FromBody] ClienteDto clienteDto) 
+        public ActionResult Post([FromBody] ClienteDto clienteDto)
         {
             try
             {
                 if (clienteDto == null)
                     return NotFound();
-                applicationServiceCliente.Add(clienteDto);
+                applicationServiceCliente.Create(clienteDto);
                 return Ok("cliente cadastrado com sucesso!");
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -53,28 +54,17 @@ namespace ApiLocadoraVeiculo.API.Controllers
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
 
-        [HttpDelete]
-        public ActionResult Delete([FromBody] ClienteDto clienteDto)
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
         {
-            try
-            {
-                if (clienteDto == null)
-                    return NotFound();
-                applicationServiceCliente.Remove(clienteDto);
-                return Ok("cliente Removido com sucesso!");
-            }
-            catch (Exception ex)
-            {
+            applicationServiceCliente.Delete(id);
+            return Ok("cliente Removido com sucesso!");
 
-                throw ex;
-            }
         }
-
-
+        
     }
 }

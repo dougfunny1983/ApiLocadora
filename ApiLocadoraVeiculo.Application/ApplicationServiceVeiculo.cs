@@ -1,8 +1,10 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
 using ApiLocadoraVeiculo.Application.Interfaces;
+using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using ApiLocadoraVeiculo.Application.Interfaces.Mappers;
 using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Application
 {
@@ -18,28 +20,28 @@ namespace ApiLocadoraVeiculo.Application
             this.mapperVeiculo = mapperVeiculo;
         }
 
-        public void Add(VeiculoDto veiculoDto)
+        public async Task Create(VeiculoDto veiculoDto)
         {
             var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
-            serviceVeiculo.Add(veiculo);
+            await serviceVeiculo.Create(veiculo);
         }
 
-        public IEnumerable<VeiculoDto> GetAll()
+        public Task<IEnumerable<VeiculoDto>> Get()
         {
-            var veiculos = serviceVeiculo.GetAll();
-            return mapperVeiculo.MapperListVeiculosDto(veiculos);
+            var veiculos = serviceVeiculo.Get();
+            return Task.FromResult(mapperVeiculo.MapperListVeiculosDto(veiculos));
         }
 
-        public VeiculoDto GetById(int id)
+        public Task<VeiculoDto> Get(string id)
         {
-            var veiculo = serviceVeiculo.GetById(id);
-            return mapperVeiculo.MapperEntityToDto(veiculo);
+            var veiculo = serviceVeiculo.Get(id);
+            return Task.FromResult(mapperVeiculo.MapperEntityToDto(veiculo));
         }
 
-        public void Remove(VeiculoDto veiculoDto)
+        public void Delete(VeiculoDto veiculoDto)
         {
             var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
-            serviceVeiculo.Remove(veiculo);
+            serviceVeiculo.Delete(veiculo);
         }
 
         public void Update(VeiculoDto veiculoDto)
@@ -47,5 +49,6 @@ namespace ApiLocadoraVeiculo.Application
             var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
             serviceVeiculo.Update(veiculo);
         }
+        
     }
 }

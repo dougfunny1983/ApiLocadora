@@ -20,10 +20,10 @@ namespace ApiLocadoraVeiculo.API.Controllers
             this.applicationServiceVeiculo = applicationServiceVeiculo;
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get() => Ok(applicationServiceVeiculo.GetAll());
+        public ActionResult<IEnumerable<string>> Get() => Ok(applicationServiceVeiculo.Get());
 
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id) => Ok(applicationServiceVeiculo.GetById(id));
+        public ActionResult<string> Get(string id) => Ok(applicationServiceVeiculo.Get(id));
 
         [HttpPost]
         public ActionResult Post([FromBody] VeiculoDto veiculoDto)
@@ -32,7 +32,7 @@ namespace ApiLocadoraVeiculo.API.Controllers
             {
                 if (veiculoDto == null)
                     return NotFound();
-                applicationServiceVeiculo.Add(veiculoDto);
+                applicationServiceVeiculo.Create(veiculoDto);
                 return Ok("cliente cadastrado com sucesso!");
             }
             catch (Exception ex)
@@ -59,9 +59,10 @@ namespace ApiLocadoraVeiculo.API.Controllers
             }
         }
 
-        [HttpDelete]
-        public ActionResult Delete([FromBody] VeiculoDto veiculoDto)
+        [HttpDelete("{id}")]
+        public ActionResult Delete(string id)
         {
+            var veiculoDto = applicationServiceVeiculo.Get(id);
             try
             {
                 if (veiculoDto == null)
