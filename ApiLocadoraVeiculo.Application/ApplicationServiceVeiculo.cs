@@ -1,10 +1,8 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
-using ApiLocadoraVeiculo.Application.Interfaces;
 using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using ApiLocadoraVeiculo.Application.Interfaces.Mappers;
 using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Application
 {
@@ -20,22 +18,28 @@ namespace ApiLocadoraVeiculo.Application
             this.mapperVeiculo = mapperVeiculo;
         }
 
-        public async Task Create(VeiculoDto veiculoDto)
+        public void Create(VeiculoDto veiculoDto)
         {
             var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
-            await serviceVeiculo.Create(veiculo);
+            serviceVeiculo.Create(veiculo);
         }
 
-        public Task<IEnumerable<VeiculoDto>> Get()
+        public IEnumerable<VeiculoDto> Get()
         {
             var veiculos = serviceVeiculo.Get();
-            return Task.FromResult(mapperVeiculo.MapperListVeiculosDto(veiculos));
+            return mapperVeiculo.MapperListVeiculosDto(veiculos);
         }
 
-        public Task<VeiculoDto> Get(string id)
+        public VeiculoDto Get(string id)
         {
             var veiculo = serviceVeiculo.Get(id);
-            return Task.FromResult(mapperVeiculo.MapperEntityToDto(veiculo));
+            return mapperVeiculo.MapperEntityToDto(veiculo);
+        }
+
+        public void Update(string id, VeiculoDto veiculoDto)
+        {
+            var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
+            serviceVeiculo.Update(id, veiculo);
         }
 
         public void Delete(VeiculoDto veiculoDto)
@@ -44,11 +48,12 @@ namespace ApiLocadoraVeiculo.Application
             serviceVeiculo.Delete(veiculo);
         }
 
-        public void Update(VeiculoDto veiculoDto)
-        {
-            var veiculo = mapperVeiculo.MapperDtoToEntity(veiculoDto);
-            serviceVeiculo.Update(veiculo);
-        }
-        
+        public void Delete(string id) =>
+            serviceVeiculo.Delete(id);
+
+        //public void Dispose()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }

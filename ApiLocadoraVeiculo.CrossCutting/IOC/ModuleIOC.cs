@@ -7,8 +7,10 @@ namespace ApiLocadoraVeiculo.CrossCutting.IOC
         protected override void Load(ContainerBuilder builder)
         {
             #region Carrega IOC
+
             ConfigurationIOC.Load(builder);
-            #endregion
+
+            #endregion Carrega IOC
         }
     }
 }

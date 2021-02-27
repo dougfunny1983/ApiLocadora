@@ -1,12 +1,9 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
-using ApiLocadoraVeiculo.Domain.Entitys;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using ApiLocadoraVeiculo.Domain.Core.Interfaces.Base;
 
 namespace ApiLocadoraVeiculo.Application.Interfaces.AplicationService
 {
-    public interface IApplicationServiceVeiculo : IApplicationServiceBase<VeiculoDto>
+    public interface IApplicationServiceVeiculo : IBase<VeiculoDto>
     {
     }
 }

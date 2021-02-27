@@ -1,16 +1,11 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
-using ApiLocadoraVeiculo.Application.Interfaces;
+using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace ApiLocadoraVeiculo.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class VeiculoController : ControllerBase
     {
@@ -20,63 +15,61 @@ namespace ApiLocadoraVeiculo.API.Controllers
             this.applicationServiceVeiculo = applicationServiceVeiculo;
 
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get() => Ok(applicationServiceVeiculo.Get());
-
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(string id) => Ok(applicationServiceVeiculo.Get(id));
-
-        [HttpPost]
-        public ActionResult Post([FromBody] VeiculoDto veiculoDto)
+        public ActionResult<IEnumerable<VeiculoDto>> Get()
         {
-            try
-            {
-                if (veiculoDto == null)
-                    return NotFound();
-                applicationServiceVeiculo.Create(veiculoDto);
-                return Ok("cliente cadastrado com sucesso!");
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            var veiculos = applicationServiceVeiculo.Get();
+            return Ok(veiculos);
         }
 
-        [HttpPut]
-        public ActionResult Put([FromBody] VeiculoDto veiculoDto)
+        [HttpGet("{id}")]
+        public ActionResult<VeiculoDto> Get(string id)
         {
-            try
-            {
-                if (veiculoDto == null)
-                    return NotFound();
-                applicationServiceVeiculo.Update(veiculoDto);
-                return Ok("cliente Atualizado com sucesso!");
-            }
-            catch (Exception ex)
-            {
+            var veiculos = applicationServiceVeiculo.Get(id);
 
-                throw ex;
+            if (veiculos == null)
+            {
+                return NotFound();
             }
+
+            return Ok(veiculos);
+        }
+
+        [HttpPost]
+        public ActionResult<VeiculoDto> Post([FromBody] VeiculoDto veiculo)
+        {
+            applicationServiceVeiculo.Create(veiculo);
+
+            return Ok(veiculo);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, VeiculoDto veiculo)
+        {
+            var newCliente = applicationServiceVeiculo.Get(id);
+
+            if (newCliente == null)
+            {
+                return NotFound();
+            }
+
+            applicationServiceVeiculo.Update(id, veiculo);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public IActionResult Delete(string id)
         {
-            var veiculoDto = applicationServiceVeiculo.Get(id);
-            try
-            {
-                if (veiculoDto == null)
-                    return NotFound();
-                applicationServiceVeiculo.Remove(veiculoDto);
-                return Ok("cliente Removido com sucesso!");
-            }
-            catch (Exception ex)
-            {
+            var veiculo = applicationServiceVeiculo.Get(id);
 
-                throw ex;
+            if (veiculo == null)
+            {
+                return NotFound();
             }
+
+            applicationServiceVeiculo.Delete(veiculo.Id);
+
+            return NoContent();
         }
-
-
     }
 }

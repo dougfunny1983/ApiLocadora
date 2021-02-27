@@ -1,8 +1,9 @@
-﻿using ApiLocadoraVeiculo.Domain.Entitys;
+﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Base;
+using ApiLocadoraVeiculo.Domain.Entitys;
 
 namespace ApiLocadoraVeiculo.Domain.Core.Interfaces.Repositorys
 {
-    public interface IRepositoryCliente : IRepositoryBase<Cliente>
+    public interface IRepositoryCliente : IBase<Cliente>
     {
     }
 }

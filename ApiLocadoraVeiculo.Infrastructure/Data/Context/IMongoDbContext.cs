@@ -1,10 +1,15 @@
 ﻿using MongoDB.Driver;
+using System;
+using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Infrastructure.Data
 {
-    public interface IMongoDbContext
+    public interface IMongoDbContext : IDisposable
     {
-        IMongoCollection<Book> GetCollection<Book>(string name);
+        void AddCommand(Func<Task> func);
+
+        Task<int> SaveChanges();
+
+        IMongoCollection<T> GetCollection<T>(string name);
     }
 }
-

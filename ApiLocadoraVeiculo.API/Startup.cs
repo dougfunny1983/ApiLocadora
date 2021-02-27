@@ -1,10 +1,10 @@
 using ApiLocadoraVeiculo.CrossCutting.IOC;
 using ApiLocadoraVeiculo.Infrastructure.Data;
+using ApiLocadoraVeiculo.Infrastructure.Data.Uow;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -24,16 +24,8 @@ namespace ApiLocadoraVeiculo.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // requires using Microsoft.Extensions.Options
-            //services.Configure<LocadoraDatabaseSettings>(
-            //    Configuration.GetSection(nameof(LocadoraDatabaseSettings)));
-
-            //services.AddSingleton<ILocadoraDatabaseSettings>(sp =>
-            //    sp.GetRequiredService<IOptions<LocadoraDatabaseSettings>>().Value);
-
-            var connection = Configuration["SqlConnection:SqlConnectionString"];
-            services.AddDbContext<MongoDbContext>(options => options.UseSqlServer(connection));
-
+            services.AddScoped<IMongoDbContext, MongoDbContext>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddControllers();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Latest);
             services.AddSwaggerGen(c =>
@@ -42,14 +34,17 @@ namespace ApiLocadoraVeiculo.API
             });
         }
 
-        // This methodo gets called by runtime. Use this method to add configure the IOC (depedencie injection). 
+        // This methodo gets called by runtime. Use this method to add configure the IOC (depedencie injection).
 
-        public void ConfigureContainer(ContainerBuilder builder) 
+        public void ConfigureContainer(ContainerBuilder builder)
         {
             #region Modulo IOC (injeção de dependêcia)
+
             builder.RegisterModule(new ModuleIOC());
-            #endregion
+
+            #endregion Modulo IOC (injeção de dependêcia)
         }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

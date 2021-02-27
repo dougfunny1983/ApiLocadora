@@ -5,11 +5,8 @@ namespace ApiLocadoraVeiculo.Infrastructure.Data.Repositorys
 {
     public class RepositoryVeiculo : RepositoryBase<Veiculo>, IRepositoryVeiculo
     {
-        private readonly MongoDbContext mongoDbContext;
-
-        public RepositoryVeiculo(MongoDbContext mongoDbContext) 
-            : base(mongoDbContext) => this.mongoDbContext = mongoDbContext;
-        
+        public RepositoryVeiculo(IMongoDbContext context) : base(context)
+        {
+        }
     }
 }
-

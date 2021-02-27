@@ -3,7 +3,6 @@ using ApiLocadoraVeiculo.Application.Interfaces.Mappers;
 using ApiLocadoraVeiculo.Domain.Entitys;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Application.Mappers
 {

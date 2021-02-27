@@ -1,70 +1,75 @@
 ﻿using ApiLocadoraVeiculo.Application.Dtos;
-using ApiLocadoraVeiculo.Application.Interfaces;
 using ApiLocadoraVeiculo.Application.Interfaces.AplicationService;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {
         private readonly IApplicationServiceCliente applicationServiceCliente;
 
         public ClienteController(IApplicationServiceCliente applicationServiceCliente) =>
-            this.applicationServiceCliente = applicationServiceCliente;
+                    this.applicationServiceCliente = applicationServiceCliente;
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<string>>> Get() =>
-            Ok(await applicationServiceCliente.Get());
-        
-
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(string id) => 
-            Ok(applicationServiceCliente.Get(id));
-
-        [HttpPost]
-        public ActionResult Post([FromBody] ClienteDto clienteDto)
+        public ActionResult<IEnumerable<ClienteDto>> Get()
         {
-            try
-            {
-                if (clienteDto == null)
-                    return NotFound();
-                applicationServiceCliente.Create(clienteDto);
-                return Ok("cliente cadastrado com sucesso!");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var clientes = applicationServiceCliente.Get();
+            return Ok(clientes);
         }
 
-        [HttpPut]
-        public ActionResult Put([FromBody] ClienteDto clienteDto)
+        [HttpGet("{id}")]
+        public ActionResult<ClienteDto> Get(string id)
         {
-            try
+            var cliente = applicationServiceCliente.Get(id);
+
+            if (cliente == null)
             {
-                if (clienteDto == null)
-                    return NotFound();
-                applicationServiceCliente.Update(clienteDto);
-                return Ok("cliente Atualizado com sucesso!");
+                return NotFound();
             }
-            catch (Exception ex)
+
+            return cliente;
+        }
+
+        [HttpPost]
+        public ActionResult<ClienteDto> Post([FromBody] ClienteDto cliente)
+        {
+            applicationServiceCliente.Create(cliente);
+
+            return Ok(cliente);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Update(string id, ClienteDto cliente)
+        {
+            var newCliente = applicationServiceCliente.Get(id);
+
+            if (newCliente == null)
             {
-                throw ex;
+                return NotFound();
             }
+
+            applicationServiceCliente.Update(id, cliente);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult Delete(string id)
+        public IActionResult Delete(string id)
         {
-            applicationServiceCliente.Delete(id);
-            return Ok("cliente Removido com sucesso!");
+            var cliente = applicationServiceCliente.Get(id);
 
+            if (cliente == null)
+            {
+                return NotFound();
+            }
+
+            applicationServiceCliente.Delete(cliente.Id);
+
+            return NoContent();
         }
-        
     }
 }

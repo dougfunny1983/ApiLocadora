@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ApiLocadoraVeiculo.Domain.Entitys
+﻿namespace ApiLocadoraVeiculo.Domain.Entitys
 {
     public class Cliente : Base
     {

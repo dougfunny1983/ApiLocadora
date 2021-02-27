@@ -1,25 +1,24 @@
-﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Repositorys;
-using ApiLocadoraVeiculo.Domain.Core.Interfaces.Services;
+﻿using ApiLocadoraVeiculo.Domain.Core.Interfaces.Base;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace ApiLocadoraVeiculo.Domain.Services
 {
-    public class ServiceBase<TEntity> : IServiceBase<TEntity> where TEntity : class
+    public class ServiceBase<TEntity> : IBase<TEntity> where TEntity : class
     {
-        private readonly IRepositoryBase<TEntity> repository;
+        private readonly IBase<TEntity> repository;
 
-        public ServiceBase(IRepositoryBase<TEntity> repository) => this.repository = repository;
+        public ServiceBase(IBase<TEntity> repository) => this.repository = repository;
 
+        public TEntity Get(string id) => repository.Get(id);
 
-        public Task Create(TEntity obj) => repository.Create(obj);
-        
-        public void Delete(string id) => repository.Delete(id);      
+        public IEnumerable<TEntity> Get() => repository.Get();
 
-        public Task<TEntity> Get(string id) => repository.Get(id);
+        public void Create(TEntity obj) => repository.Create(obj);
 
-        public Task<IEnumerable<TEntity>> Get() => repository.Get();
+        public void Update(string id, TEntity obj) => repository.Update(id, obj);
 
-        public void Update(TEntity obj) => repository.Update(obj);
+        public void Delete(string id) => repository.Delete(id);
+
+        public void Delete(TEntity obj) => repository.Delete(obj);
     }
 }
