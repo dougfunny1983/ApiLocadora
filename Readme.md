@@ -2,12 +2,13 @@
 
 ***Arquitetura:***
 - O designer arquitetural que eu escolhi foi o Onion. Trata-se de uma arquitetura que segue os princípios SOLID:
-S.O.L.I.D stands for:
-S - Single-responsiblity principle
-O - Open-closed principle
-L - Liskov substitution principle
-I - Interface segregation principle
-D - Dependency Inversion Principle), 
+*S.O.L.I.D stands for:*
+**S - Single-responsiblity principle;
+O - Open-closed principle;
+L - Liskov substitution principle;
+I - Interface segregation principle;
+D - Dependency Inversion Principle;**
+
 Além disso, tem como base o padrão DDD. Além das camadas tradicionais que seguem algumas arquiteturas, ele tem a camada que pode conversar com outras camadas, tornando assim flexível. Para essa camada, usei um conceito chamado Inversão de controle (uso da biblioteca IOC), que permite que o controle das instancias dos objetos sejam gerenciados automaticamente, sem precisar que eu instancie manualmente. Além disso, foi feito a Injeção e Inversão de dependência, para evitar o auto acoplamento comum quando damos mais de uma responsabilidade para uma classe, principalmente quando essa classe erroneamente instancia uma outra classe.
 
 ***Onion’s***
@@ -19,11 +20,13 @@ Além disso, tem como base o padrão DDD. Além das camadas tradicionais que seg
 5.	CrossCutting: A camada CrossCutting pode realizar a inversão de controle e injeção de dependências. É aqui que faz a mágica dos instanciamentos dos objetos.
 
 	
-**MongoDB:**
-- Como banco de dados, foi escolhido o MongoDB. Ele foi Conterinizado com apoio do Docker, deployado na cloud do Azure, e gerenciado com o Atlas. Foi colocado em 3 pod, para a testar a redundância e ver como que configura o Atlas para isso, mas infelizmente não consigo configurar a memória e nem a millicore para estopurar a memoria com um teste de carga para ver ele startando as outras pod’s, pois é uma conta demo.
-**Designer Patterns
+***MongoDB:***
+•Como banco de dados, foi escolhido o MongoDB. Ele foi Conterinizado com apoio do Docker, deployado na cloud do Azure, e gerenciado com o Atlas. Foi colocado em 3 pod, para a testar a redundância e ver como que configura o Atlas para isso, mas infelizmente não consigo configurar a memória e nem a millicore para estopurar a memoria com um teste de carga para ver ele startando as outras pod’s, pois é uma conta demo.
+
+***Designer Patterns***
 -Foi usado em todo o projeto o designer patterns Interfaces, com apoio do Adapter, do Factory e do Abstract. 
-**Deploy
+
+***Deploy**
 -A solução foi Conterinizado com apoio do Docker, deployada no Cloud do Google e gerenciada pelo Kubernetes(K8S) em uma única pod.
 
 Abaixo está relacionado as fontes de pesquisa para estudos futuros:
