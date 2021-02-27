@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Services\" />
-    <Folder Include="Interfaces\Repositorys\" />
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj" />
   </ItemGroup>
 
 </Project>

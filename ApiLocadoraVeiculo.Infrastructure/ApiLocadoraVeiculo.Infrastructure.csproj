@@ -5,8 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="CrossCutting\" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.11.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain.Core\ApiLocadoraVeiculo.Domain.Core.csproj" />
+    <ProjectReference Include="..\ApiLocadoraVeiculo.Domain\ApiLocadoraVeiculo.Domain.csproj" />
   </ItemGroup>
 
 </Project>
