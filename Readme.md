@@ -1,50 +1,55 @@
-Essa soluÁ„o feita totalmente feita em DDD/Onion È uma API, documentada pelo Swagger, com a camada de persistÍncia de dados no banco n„o relacional Mongo DB com alguns designer patterns.
-**Arquitetura:
-- O designer arquitetural que eu escolhi foi o Onion. Trata-se de uma arquitetura que segue os princÌpios SOLID:
+**Essa solu√ß√£o foi totalmente feita em DDD/Onion, √© uma API, documentada pelo Swagger, com a camada de persist√™ncia de dados no banco n√£o relacional Mongo DB com alguns designer patterns.**
+
+***Arquitetura:***
+- O designer arquitetural que eu escolhi foi o Onion. Trata-se de uma arquitetura que segue os princ√≠pios SOLID:
 S.O.L.I.D stands for:
 S - Single-responsiblity principle
 O - Open-closed principle
 L - Liskov substitution principle
 I - Interface segregation principle
 D - Dependency Inversion Principle), 
-AlÈm disso, tem como base o padr„o DDD. AlÈm das camadas tradicionais que seguem algumas arquiteturas, ele tem a camada que pode conversar com outras camadas, tornando assim flexÌvel. Para essa camada, usei um conceito chamado Invers„o de controle (uso da biblioteca IOC), que permite que o controle das instancias dos objetos sejam gerenciados automaticamente, sem precisar que eu instancie manualmente. AlÈm disso, foi feito a InjeÁ„o e Invers„o de dependÍncia, para evitar o auto acoplamento comum quando damos mais de uma responsabilidade para uma classe, principalmente quando essa classe erroneamente instancia uma outra classe.
-Onionís
-- Aqui vou listar as camadas e explicar uma abstraÁ„o de cada uma:
-1.	
-**MongoDB
-- Como banco de dados, foi escolhido o MongoDB. Ele foi Conterinizado com apoio do Docker, deployado na cloud do Azure, e gerenciado com o Atlas. Foi colocado em 3 pod, para a testar a redund‚ncia e ver como que configura o Atlas para isso, mas infelizmente n„o consigo configurar a memÛria e nem a millicore para estopurar a memoria com um teste de carga para ver ele startando as outras podís, pois È uma conta demo.
+Al√©m disso, tem como base o padr√£o DDD. Al√©m das camadas tradicionais que seguem algumas arquiteturas, ele tem a camada que pode conversar com outras camadas, tornando assim flex√≠vel. Para essa camada, usei um conceito chamado Invers√£o de controle (uso da biblioteca IOC), que permite que o controle das instancias dos objetos sejam gerenciados automaticamente, sem precisar que eu instancie manualmente. Al√©m disso, foi feito a Inje√ß√£o e Invers√£o de depend√™ncia, para evitar o auto acoplamento comum quando damos mais de uma responsabilidade para uma classe, principalmente quando essa classe erroneamente instancia uma outra classe.
+
+***Onion‚Äôs***
+-Aqui vou listar as camadas e explicar uma abstra√ß√£o de cada uma:
+1.	Api: A camada de apresenta√ß√£o que √© respons√°vel por abranger tudo o que diz respeito as intera√ß√µes com o cliente.
+2.	Aplica√ß√£o: A camada de aplica√ß√£o que √© respons√°vel por realizar a(s) aplica√ß√£o(s) se comunicar diretamente com o Dom√≠nio.
+3.	Dom√≠nio: A camada de dom√≠nio que √© respons√°vel por ter um uma modelagem s√≥lida e aqui que a m√°gica do DDD(Domain Drive Design) acontece.
+4.	Infraestrutura: A camada de infraestrutura √© respons√°vel por manter os dados e persistir no banco dados.
+5.	CrossCutting: A camada CrossCutting pode realizar a invers√£o de controle e inje√ß√£o de depend√™ncias. √â aqui que faz a m√°gica dos instanciamentos dos objetos.
+
+	
+**MongoDB:**
+- Como banco de dados, foi escolhido o MongoDB. Ele foi Conterinizado com apoio do Docker, deployado na cloud do Azure, e gerenciado com o Atlas. Foi colocado em 3 pod, para a testar a redund√¢ncia e ver como que configura o Atlas para isso, mas infelizmente n√£o consigo configurar a mem√≥ria e nem a millicore para estopurar a memoria com um teste de carga para ver ele startando as outras pod‚Äôs, pois √© uma conta demo.
 **Designer Patterns
 -Foi usado em todo o projeto o designer patterns Interfaces, com apoio do Adapter, do Factory e do Abstract. 
 **Deploy
--A soluÁ„o foi Conterinizado com apoio do Docker, deployada no Cloud do Google e gerenciada pelo Kubernetes(K8S) em uma ˙nica pod.
+-A solu√ß√£o foi Conterinizado com apoio do Docker, deployada no Cloud do Google e gerenciada pelo Kubernetes(K8S) em uma √∫nica pod.
 
-Abaixo est· relacionado as fontes de pesquisa para estudos futuros:
-1.	Api: A camada de apresentaÁ„o que È respons·vel por abranger tudo o que diz respeito as interaÁıes com o cliente.
-2.	AplicaÁ„o: A camada de aplicaÁ„o que È respons·vel por realizar a(s) aplicaÁ„o(s) se comunicar diretamente com o DomÌnio.
-3.	DomÌnio: A camada de domÌnio que È respons·vel por ter um uma modelagem sÛlida e aqui que a m·gica do DDD(Domain Drive Design) acontece.
-4.	Infraestrutura: A camada de infraestrutura È respons·vel por manter os dados e persistir no banco dados.
-5.	CrossCutting: A camada CrossCutting pode realizar a invers„o de controle e injeÁ„o de dependÍncias. … aqui que faz a m·gica dos instanciamentos dos objetos.
+Abaixo est√° relacionado as fontes de pesquisa para estudos futuros:
 
-*DDD: 
-ï	https://www.youtube.com/watch?v=eUf5rhBGLAk
-ï	https://imasters.com.br/apis-microsservicos/domain-driven-design-ddd-em-uma-arquitetura-microsservicos
-ï	https://www.eduardopires.net.br/2016/08/ddd-nao-e-arquitetura-em-camadas/
-ï	https://www.youtube.com/watch?v=plS-rf2UIPI
-ï	https://djesusnet.medium.com/
+***DDD:***
+‚Ä¢	https://www.youtube.com/watch?v=eUf5rhBGLAk
+‚Ä¢	https://imasters.com.br/apis-microsservicos/domain-driven-design-ddd-em-uma-arquitetura-microsservicos
+‚Ä¢	https://www.eduardopires.net.br/2016/08/ddd-nao-e-arquitetura-em-camadas/
+‚Ä¢	https://www.youtube.com/watch?v=plS-rf2UIPI
+‚Ä¢	https://djesusnet.medium.com/
 
-Onionís:
-ï	portal da arquitetura (link por autenticaÁ„o Localiza) https://aws-dev.localiza.dev/portal/index.html
-ï	http://www.macoratti.net/20/05/net_onion1.htm#:~:text=A%20Onion%20Architecture%20usa%20o,de%20tr%C3%AAs%20e%20n%2Dcamadas.&text=A%20camada%20de%20dom%C3%ADnio%20reside,objetos%20de%20dom%C3%ADnio%20nesse%20n%C3%BAcleo.
-ï	https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
-K8S:
-ï	https://cloud.google.com/solutions/best-practices-for-operating-containers
-ï	https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
-ï	portal da arquitetura (link por autenticaÁ„o Localiza) https://aws-dev.localiza.dev/portal/index.html
-Docker:
-ï	https://www.docker.com/resources/what-container
+***Onion‚Äôs:***
+‚Ä¢	portal da arquitetura (link por autentica√ß√£o Localiza) https://aws-dev.localiza.dev/portal/index.html
+‚Ä¢http://www.macoratti.net/20/05/net_onion1.htm#:~:text=A%20Onion%20Architecture%20usa%20o,de%20tr%C3%AAs%20e%20n%2Dcamadas.&text=A%20camada%20de%20dom%C3%ADnio%20reside,objetos%20de%20dom%C3%ADnio%20nesse%20n%C3%BAcleo.
+‚Ä¢	https://jeffreypalermo.com/2008/07/the-onion-architecture-part-1/
 
+***K8S:***
+‚Ä¢	https://cloud.google.com/solutions/best-practices-for-operating-containers
+‚Ä¢	https://cloud.google.com/kubernetes-engine/docs/tutorials/hello-app
+‚Ä¢	portal da arquitetura (link por autentica√ß√£o Localiza) https://aws-dev.localiza.dev/portal/index.html
+
+***Docker:***
+‚Ä¢	https://www.docker.com/resources/what-container
 MongoDB e Atlas:
-ï	https://docs.mongodb.com/
-ï	https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-5.0&tabs=visual-studio
-Swagger:
-ï	https://swagger.io/docs/
+‚Ä¢	https://docs.mongodb.com/
+‚Ä¢	https://docs.microsoft.com/pt-br/aspnet/core/tutorials/first-mongo-app?view=aspnetcore-5.0&tabs=visual-studio
+
+***Swagger:***
+‚Ä¢	https://swagger.io/docs/
