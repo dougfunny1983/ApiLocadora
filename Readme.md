@@ -26,7 +26,7 @@ Além disso, tem como base o padrão DDD. Além das camadas tradicionais que seg
 ***Designer Patterns***
 -Foi usado em todo o projeto o designer patterns Interfaces, com apoio do Adapter, do Factory e do Abstract. 
 
-***micorserviço**
+***micorserviço***
 -A solução foi Conterinizado com apoio do Docker e gerenciada pelo Kubernetes(K8S) com apoio do MiniKube.
 
 Abaixo está relacionado as fontes de pesquisa para estudos futuros:
