@@ -27,8 +27,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCutting", "5 - Cro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiLocadoraVeiculo.CrossCutting", "ApiLocadoraVeiculo.CrossCutting\ApiLocadoraVeiculo.CrossCutting.csproj", "{5DB49734-ECDE-41D5-AAF0-DE817F99599C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Config", "6 - Config", "{9A96C053-3869-49C7-ADA2-0D9AFB0AA5E2}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7- Readme", "7- Readme", "{25292A9E-990F-405A-ABBA-1A441AEAD29A}"
 	ProjectSection(SolutionItems) = preProject
 		Readme.md = Readme.md
